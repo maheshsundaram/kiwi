@@ -9,10 +9,10 @@ Why the name kiwi? My thinking went like this: *"Calendar... I use the Thunderbi
 
 ## Built with
 
-- MVP.css
-- Deno Deploy
-- Sift router for Deno
-- Simple ICS
-- Using an Emoji as favicon https://css-tricks.com/emoji-as-a-favicon/
+- [Deno Deploy](https://deno.com/deploy)
+- [Sift router](https://github.com/satyarohith/sift) for Deno
+- [Simple ICS](https://github.com/PeronGH/simple-ics)
+- [MVP.css](https://andybrewer.github.io/mvp/)
+- [Use Emoji as favicon](https://css-tricks.com/emoji-as-a-favicon/)
 
 [^1]: This was controversial in the [HackerNews comments](https://news.ycombinator.com/item?id=33109513)
