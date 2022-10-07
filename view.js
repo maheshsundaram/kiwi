@@ -78,7 +78,6 @@ addEventListener("DOMContentLoaded", () => {
   start.addEventListener("change", () => {
     const offset = offsetBy(start.value, 1);
     end.value = offset;
-    updateCurl();
   });
 
   end.addEventListener("change", () => {
