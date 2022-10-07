@@ -15,6 +15,7 @@ The integral files are:
 
 - kiwi.ts - handles the request routing and building the ics data
 - view.html - create the UI served at /cal. Raw HTML is refreshing[^2]
+- view.js - minimal UX improvements, updating the curl as form fields change
 
 ## Built with
 
