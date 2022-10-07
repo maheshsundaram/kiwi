@@ -4,44 +4,62 @@ import {
   Event,
   EventConfig,
 } from "https://deno.land/x/simple_ics@0.0.11/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.19.1/mod.ts";
+
+const buildICS = (config: EventConfig) => {
+  const event = new Event(config);
+  const calendar = new Calendar([event]);
+  const ics = calendar.toString();
+  return ics;
+};
+
+const dateSchema = z.preprocess((arg) => {
+  if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
+}, z.date());
+
+const stringSchema = z.string();
+
+const handleEvent = async (req: Request) => {
+  const form = await req.formData();
+
+  const title = form.get("title") || "Event Title";
+  const desc = form.get("desc") || "Description";
+
+  const now = new Date();
+  const then = new Date();
+  then.setHours(now.getHours() + 1);
+
+  const beginDate = form.get("start") || now;
+  const endDate = form.get("end") || then;
+
+  const _beginDate = dateSchema.safeParse(beginDate);
+  const _endDate = dateSchema.safeParse(endDate);
+  const _title = stringSchema.safeParse(title);
+  const _desc = stringSchema.safeParse(desc);
+
+  if (
+    _beginDate.success &&
+    _endDate.success &&
+    _title.success &&
+    _desc.success
+  ) {
+    const ics = buildICS({
+      title: _title.data,
+      desc: _desc.data,
+      beginDate: _beginDate.data,
+      endDate: _endDate.data,
+    });
+
+    return new Response(ics, { headers: { "Content-Type": "text/calendar" } });
+  }
+
+  return new Response("Invalid form", { status: 400 });
+};
 
 serve({
   "/": (req) => Response.redirect(`${req.url}cal`, 302),
   "/cal": serveStatic("view.html", { baseUrl: import.meta.url }),
   "/mvp.css": serveStatic("mvp.css", { baseUrl: import.meta.url }),
   "/style.css": serveStatic("style.css", { baseUrl: import.meta.url }),
-  "/event": (_req) => {
-    const cfg1: EventConfig = {
-      title: "Write Typescript",
-      beginDate: [2022, 9, 6, 9, 30],
-      endDate: [2022, 9, 6, 10],
-      desc: "Implement a module to generate .ics files",
-    };
-    const evt1 = new Event(cfg1);
-    const calendar = new Calendar([evt1]);
-    const ics = calendar.toString();
-    return new Response(ics, { headers: { "Content-Type": "text/calendar" } });
-  },
+  "/event": handleEvent,
 });
-
-// - Build out view component
-// - Build function with ical
-
-// Routes
-//
-// GET / => redirects to /cal
-// GET /cal => html/jsx form
-// GET /event?<...params>
-//
-// /event query params
-//
-// start
-// duration
-// title
-// description
-// timezone
-//
-// Features
-//
-// 1. I can send a GET to /event with params and get back content-type text/calendar with the ICS data
-// 2. I can visit / or /cal in the browser and see a form to build the event, then click a link to download the ICS data
