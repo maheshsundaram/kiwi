@@ -1,29 +1,14 @@
-.header {
-  text-align: center;
+@media (min-width: 500px) {
+  :root {
+    --width-card: 500px;
+  }
 }
-.wrapper {
+
+div {
   display: flex;
   justify-content: center;
 }
-.content {
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-form {
-  width: 60%;
-}
-.button {
-  margin-top: 2em;
-}
-.form,
-.button {
-  display: flex;
-  justify-content: center;
-}
-.item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+
+code {
+  text-align: left;
 }

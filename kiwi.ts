@@ -59,6 +59,8 @@ const handleEvent = async (req: Request) => {
 serve({
   "/": (req) => Response.redirect(`${req.url}cal`, 302),
   "/cal": serveStatic("view.html", { baseUrl: import.meta.url }),
+  "/view.js": serveStatic("view.js", { baseUrl: import.meta.url }),
+  "/mvp": serveStatic("mvp.html", { baseUrl: import.meta.url }),
   "/mvp.css": serveStatic("mvp.css", { baseUrl: import.meta.url }),
   "/style.css": serveStatic("style.css", { baseUrl: import.meta.url }),
   "/event": handleEvent,

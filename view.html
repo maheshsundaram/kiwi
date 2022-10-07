@@ -1,50 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <link rel="stylesheet" href="./mvp.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥝</text></svg>"
+    />
+
     <meta charset="utf-8" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥝</text></svg>">
+    <meta name="description" content="Kiwi calendar event creation" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="mvp.css" />
-    <link rel="stylesheet" href="style.css" />
     <title>Kiwi Calendar</title>
+
+    <script type="text/javascript" src="./view.js"></script>
   </head>
+
   <body>
-    <div class="wrapper">
-      <div class="content">
-        <div class="header">
-          <h1>🥝 Kiwi Calendar</h1>
-        </div>
-        <div class="form">
-          <form id="form" method="POST" action="/event">
-            <div class="item">
-              <label for="title">Event Title</label>
-              <input type="text" id="title" name="title" value="Meetup" />
-            </div>
+    <header>
+      <nav>
+        <h1>🥝 Kiwi Calendar</h1>
+        <ul>
+          <li>
+            <a href="https://github.com/maheshsundaram/kiwi" target="_blank">Github ↗</a>
+          </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <h1>Serverless calendar event creation</h1>
+      <span id="width"></span>
+      <br>
+      <section>
+        <form id="form" method="POST" action="/event">
+          <header>
+            <h2>Create an event</h2>
+          </header>
+            <label for="title">Event Title</label>
+            <input type="text" id="title" name="title" value="Meetup" />
 
-            <div class="item">
-              <label for="desc">Description</label>
-              <input type="text" id="desc" name="desc" value="At the park" />
-            </div>
+            <label for="desc">Description</label>
+            <input type="text" id="desc" name="desc" value="At the park" />
 
-            <div class="item">
-              <label for="start">Start</label></td>
-              <input type="datetime-local" id="start" name="start" />
-            </div>
+            <label for="start">Start</label></td>
+            <input type="datetime-local" id="start" name="start" />
 
-            <div class="item">
-              <label for="end">End</label></td>
-              <input type="datetime-local" id="end" name="end" />
-            </div>
+            <label for="end">End</label></td>
+            <input type="datetime-local" id="end" name="end" />
 
-            <div class="button">
+            <div>
               <button type="submit">Download Invite (ics)</button>
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
+        </form>
+      </section>
+      <br>
+      <section>
+        <p>
+          Or use the following curl request
+          <p><code id="curl">curl ...</code></p>
+        </p>
+        <button onclick="clipboard()" id="copy">Copy curl request</button>
+      </section>
+    </header>
     <footer>
-      <p>Made by Mahesh Sundaram. Read more about the project and view its source on Github at <a href="https://github.com/maheshsundaram/kiwi">https://github.com/maheshsundaram/kiwi</a></p>
+      <p>
+        Made by Mahesh Sundaram. Written in Typescript for Deno Deploy, inspired by zerocal. Read more about this project on <a href="https://github.com/maheshsundaram/kiwi" target="_blank">Github ↗</a>
+      </p>
     </footer>
   </body>
 </html>
+
