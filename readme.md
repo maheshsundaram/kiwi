@@ -4,6 +4,8 @@ View it live at [https://kiwical.deno.dev/](https://kiwical.deno.dev/)
 
 Serverless[^1] calendar written in Typescript for Deno Deploy, inspired by the [zerocal project](https://endler.dev/2022/zerocal/).
 
+![](./screenshot.png)
+
 ## The name
 Why the name kiwi? My thinking went like this: *"Calendar... I use the Thunderbird calendar... Thunderbird is a flightless bird. Zero is like 'flightless'. Kiwis are also flightless."*
 
