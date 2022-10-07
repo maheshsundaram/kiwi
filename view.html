@@ -15,15 +15,15 @@
           <h1>🥝 Kiwi Calendar</h1>
         </div>
         <div class="form">
-          <form id="form">
+          <form id="form" method="POST" action="/event">
             <div class="item">
               <label for="title">Event Title</label>
-              <input type="text" id="title" name="title" value="Birthday" />
+              <input type="text" id="title" name="title" value="Meetup" />
             </div>
 
             <div class="item">
               <label for="desc">Description</label>
-              <input type="text" id="desc" name="desc" value="Party" />
+              <input type="text" id="desc" name="desc" value="At the park" />
             </div>
 
             <div class="item">
@@ -36,13 +36,8 @@
               <input type="datetime-local" id="end" name="end" />
             </div>
 
-            <div class="item">
-              <label for="location">Location/URL (optional)</label></td>
-              <input type="text" id="location" name="location" />
-            </div>
-
             <div class="button">
-              <button type="button">Download Invite (ics)</button>
+              <button type="submit">Download Invite (ics)</button>
             </div>
           </form>
         </div>
