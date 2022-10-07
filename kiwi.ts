@@ -1,8 +1,31 @@
-import { serve } from "https://deno.land/std@0.140.0/http/server.ts";
+import { serve, serveStatic } from "https://deno.land/x/sift@0.6.0/mod.ts";
+import {
+  Calendar,
+  Event,
+  EventConfig,
+} from "https://deno.land/x/simple_ics@0.0.11/mod.ts";
 
-serve(() => {
-  return new Response("TODO", { headers: { "content-type": "text/plain" } });
+serve({
+  "/": (req) => Response.redirect(`${req.url}cal`, 302),
+  "/cal": serveStatic("view.html", { baseUrl: import.meta.url }),
+  "/mvp.css": serveStatic("mvp.css", { baseUrl: import.meta.url }),
+  "/style.css": serveStatic("style.css", { baseUrl: import.meta.url }),
+  "/event": (_req) => {
+    const cfg1: EventConfig = {
+      title: "Write Typescript",
+      beginDate: [2022, 9, 6, 9, 30],
+      endDate: [2022, 9, 6, 10],
+      desc: "Implement a module to generate .ics files",
+    };
+    const evt1 = new Event(cfg1);
+    const calendar = new Calendar([evt1]);
+    const ics = calendar.toString();
+    return new Response(ics, { headers: { "Content-Type": "text/calendar" } });
+  },
 });
+
+// - Build out view component
+// - Build function with ical
 
 // Routes
 //

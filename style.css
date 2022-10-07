@@ -1,0 +1,29 @@
+.header {
+  text-align: center;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+.content {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+form {
+  width: 60%;
+}
+.button {
+  margin-top: 2em;
+}
+.form,
+.button {
+  display: flex;
+  justify-content: center;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
