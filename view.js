@@ -78,12 +78,14 @@ addEventListener("DOMContentLoaded", () => {
   start.addEventListener("change", () => {
     const offset = offsetBy(start.value, 1);
     end.value = offset;
+    updateCurl();
   });
 
   end.addEventListener("change", () => {
     const s = new Date(start.value);
     const e = new Date(end.value);
     if (!start.value || s > e) start.value = offsetBy(end.value, -1);
+    updateCurl();
   });
 
   updateCurl();
