@@ -2,7 +2,7 @@
 
 View it live at [https://kiwical.deno.dev/](https://kiwical.deno.dev/)
 
-Serverless[^1] calendar written in Typescript for Deno Deploy, inspired by the [zerocal project](https://endler.dev/2022/zerocal/).
+Serverless[^1] calendar written in Typescript for Deno Deploy, inspired by the [zerocal project](https://github.com/mre/zerocal).
 
 ![](./screenshot.png)
 
